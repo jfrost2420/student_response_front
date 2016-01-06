@@ -23,6 +23,7 @@ class HomePage extends Component {
           <input className="home__input" type="text" onChange={(evt) => { dispatch(asyncChangeOwnerName(evt.target.value)); }} defaultValue="mxstbr" value={ownerName} />
         </label>
         <Link className="btn" to="/readme">Setup</Link>
+        <button type="button" className="btn btn-primary">Primary</button>
       </div>
     );
   }

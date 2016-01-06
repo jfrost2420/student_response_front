@@ -83,7 +83,7 @@ module.exports = function(options) {
           test:   /\.css$/, // Transform all .css files required somewhere within an entry point...
           loader: cssLoaders // ...with PostCSS
         }, {
-          test: /\.jpe?g$|\.gif$|\.png$/i,
+          test: /\.(png|woff|woff2|eot|ttf|svg)$/,
           loader: "url-loader?limit=10000"
         }
       ]
