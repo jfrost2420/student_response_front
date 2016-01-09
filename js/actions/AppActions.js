@@ -36,6 +36,18 @@ export function asyncChangeProjectName(name) {
     // For more information as to how and why you would do this, check https://github.com/gaearon/redux-thunk
     return dispatch(changeProjectName(name));
   };
+
+  //another example
+  /*
+  return (dispatch) => {
+    dispatch({ type: SOMETHING_STARTED });
+
+    return requestSomething().then(
+      (result) =>  dispatch({ type: SOMETHING_COMPLETED, result }),
+      (error) =>  dispatch({ type: SOMETHING_FAILED, error })
+    );
+  };
+  */
 }
 
 export function asyncChangeOwnerName(name) {

@@ -31,17 +31,11 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr)!
 
 ## Getting started
 
-1. Clone this repo using `git clone git@github.com:mxstbr/react-boilerplate`.
+1. Run `npm install` to install the dependencies.
 
-2. Delete the existing git repository by running `rm -rf .git`.
+2. Run `npm start` to start the local web server.
 
-3. Initialize a new git repository with `git init`, `git add .` and `git commit -m "Initial commit"`.
-
-4. Run `npm install` to install the dependencies.
-
-5. Run `npm start` to start the local web server.
-
-6. Go to `http://localhost:3000` and you should see the app running!
+3. Go to `http://localhost:3000` and you should see the app running!
 
 ## Building & Deploying
 
