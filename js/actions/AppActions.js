@@ -34,7 +34,29 @@ export function asyncChangeProjectName(name) {
     // You can do async stuff here!
     // API fetching, Animations,...
     // For more information as to how and why you would do this, check https://github.com/gaearon/redux-thunk
-    return dispatch(changeProjectName(name));
+    //return dispatch(changeProjectName(name));
+
+    /*
+    fetch('http://localhost:5002/api').then(function(response) {
+      response.json().then(function(json) {
+        console.log(json);
+      })
+    });
+*/
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log('change name',name);
+            return dispatch(changeProjectName(JSON.parse(xhr.responseText).msg));
+            //alert(xhr.responseText);
+        }
+    }
+    xhr.open('GET', 'http://localhost:5002/api', true);
+    xhr.send(null);
+
+
   };
 
   //another example

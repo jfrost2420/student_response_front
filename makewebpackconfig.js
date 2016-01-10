@@ -74,6 +74,7 @@ module.exports = function(options) {
       path: path.resolve(__dirname, 'build'),
       filename: "js/bundle.js"
     },
+    devtool: 'source-map',
     module: {
       loaders: [{
           test: /\.js$/, // Transform all .js files required somewhere within an entry point...
