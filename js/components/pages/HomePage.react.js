@@ -8,8 +8,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-const socket = io('http://localhost:5002',{"force new connection":true});
-
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +20,6 @@ class HomePage extends Component {
     //FooterActions.getTopCharacters();
     console.log('componentDidMount...');
 
-    socket.on('chat message', function(msg){
-      console.log(msg);
-    });
   }
 
   componentWillUnmount() {

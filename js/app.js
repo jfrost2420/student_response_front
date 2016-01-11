@@ -29,6 +29,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
+//import io from 'socket.io-client'; ////npm install --save socket.io-client
 import thunk from 'redux-thunk';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/lib/createBrowserHistory';
@@ -49,6 +50,8 @@ import ReadmePage from './components/pages/ReadmePage.react';
 import NotFoundPage from './components/pages/NotFound.react';
 import App from './components/App.react';
 
+import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './constants/AppConstants';
+
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
 
@@ -57,6 +60,16 @@ import '../css/main.css';
 import rootReducer from './reducers/rootReducer';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
+
+const socket = io('http://localhost:5002',{"force new connection":true});
+socket.on('chat message', function(msg){
+  console.log(msg);
+  store.dispatch({ type: CHANGE_PROJECT_NAME, name: msg });
+});
+
+socket.on('connect', function() {
+  console.log('socket connected...');
+});
 
 // Make reducers hot reloadable, see http://stackoverflow.com/questions/34243684/make-redux-reducers-and-other-non-components-hot-loadable
 if (module.hot) {
