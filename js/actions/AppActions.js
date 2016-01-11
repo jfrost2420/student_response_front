@@ -26,8 +26,8 @@
 // Disable the no-use-before-define eslint rule for this file
 // It makes more sense to have the asnyc actions before the non-async ones
 /* eslint-disable no-use-before-define */
-
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants/AppConstants';
+import fetchit from '../api/index';
 
 export function asyncChangeProjectName(name) {
   return (dispatch) => {
@@ -44,7 +44,8 @@ export function asyncChangeProjectName(name) {
     });
 */
 
-
+  
+    /*
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -55,6 +56,16 @@ export function asyncChangeProjectName(name) {
     }
     xhr.open('GET', 'http://localhost:5002/api', true);
     xhr.send(null);
+    */
+
+    //fetchit('http://localhost:5002/api','GET', function(json) {
+    //  console.log('the json....',json);
+    //});
+
+    fetchit('http://localhost:5002/api','GET').then(function(data) {
+      console.log('the json....',data);
+      return dispatch(changeProjectName(data.msg));
+    });
 
 
   };

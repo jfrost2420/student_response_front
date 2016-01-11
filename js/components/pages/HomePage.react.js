@@ -8,7 +8,33 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+const socket = io('http://localhost:5002',{"force new connection":true});
+
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    //this.state = FooterStore.getState();
+    //this.onChange = this.onChange.bind(this);
+  }
+
+  componentDidMount() {
+    //FooterStore.listen(this.onChange);
+    //FooterActions.getTopCharacters();
+    console.log('componentDidMount...');
+
+    socket.on('chat message', function(msg){
+      console.log(msg);
+    });
+  }
+
+  componentWillUnmount() {
+    //FooterStore.unlisten(this.onChange);
+    console.log('componentWillUnmount...');
+  }
+
+  onChange(state) {
+    this.setState(state);
+  }
   render() {
     const dispatch = this.props.dispatch;
     const { projectName, ownerName } = this.props.data;
