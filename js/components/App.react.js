@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     const { projectName, ownerName } = this.props.data;
     return (
-      <div className="wrapper">
+      <div>
         <nav className="navbar navbar-inverse navbar-fixed-top">
           <div className="container">
             <div className="navbar-header">
@@ -39,8 +39,9 @@ class App extends Component {
             </div>
           </div>
         </nav>
-        <img className="logo" src={Logo} />
-        { this.props.children }
+        <div className="container">
+          { this.props.children }
+        </div>
       </div>
     );
   }
