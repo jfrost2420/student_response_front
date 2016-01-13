@@ -34,6 +34,8 @@ import tab2 from './components/tab2';
 
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './constants/AppConstants';
 
+import auth from './api/auth';
+
 
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
@@ -45,7 +47,10 @@ const store = createStoreWithMiddleware(rootReducer);
 
 function authCheck(nextState, replace) {
   console.log('authCheck...');
-  //replace({ nextPathname: nextState.location.pathname }, '/readme')
+  const { user } = store.getState();
+  if(!user) {
+    replace({},'/login');
+  }
 }
 
 // Mostly boilerplate, except for the Routes. These are the pages you can go to,
@@ -53,13 +58,14 @@ function authCheck(nextState, replace) {
 render((
   <Provider store={store}>
     <Router history={createBrowserHistory()}>
-      <Route path="/" component={AppLoader} onEnter={authCheck}>
-        <IndexRoute component={page1}/>
+      <Route path="/" component={AppLoader}>
+        <IndexRoute component={LoginPage}/>
+        <Route path="login" component={LoginPage} />
         <Route path="page1" component={page1}>
           <Route path="tab1" component={tab1} />
           <Route path="tab2" component={tab2} />
         </Route>
-        <Route path="page2" component={page2}>
+        <Route path="page2" component={page2} onEnter={authCheck}>
           <Route path="tab1" component={tab1} />
           <Route path="tab2" component={tab2} />
         </Route>
