@@ -11,6 +11,28 @@ import { connect } from 'react-redux';
 import Logo from '../../img/logo.png';
 
 class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+    //this.state = FooterStore.getState();
+    //this.onChange = this.onChange.bind(this);
+
+    //this.props.history.pushState(null, '/readme');
+  }
+
+  componentDidMount() {
+    //FooterStore.listen(this.onChange);
+    //FooterActions.getTopCharacters();
+    console.log('componentDidMount...');
+
+    //this.props.history.pushState(null, '/readme');
+
+  }
+
+  componentWillUnmount() {
+    //FooterStore.unlisten(this.onChange);
+    console.log('componentWillUnmount...');
+  }
+
   render() {
     const { projectName, ownerName } = this.props.data;
     return (
@@ -46,6 +68,7 @@ class App extends Component {
     );
   }
 }
+
 
 // REDUX STUFF
 

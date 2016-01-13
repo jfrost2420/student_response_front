@@ -18,7 +18,8 @@ import assignToEmpty from '../utils/assign';
 
 const initialState = {
   projectName: 'React.js Boilerplate',
-  ownerName: 'mxstbr'
+  ownerName: 'mxstbr',
+  user: false
 };
 
 function homeReducer(state = initialState, action) {

@@ -7,89 +7,65 @@
  *
  */
 
-// Load the ServiceWorker, the Cache polyfill, the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!../serviceworker.js';
-import 'file?name=[name].[ext]!../manifest.json';
-import 'file?name=[name].[ext]!../.htaccess';
-
-// Check for ServiceWorker support before trying to install it
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/serviceworker.js').then(() => {
-    // Registration was successful
-  }).catch(() => {
-    // Registration failed
-  });
-} else {
-  // No ServiceWorker Support
-}
 
 // Import all the third party stuff
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+import { Router, Route, IndexRoute } from 'react-router';
+
 import { createStore, applyMiddleware } from 'redux';
-//import io from 'socket.io-client'; ////npm install --save socket.io-client
 import thunk from 'redux-thunk';
-import FontFaceObserver from 'fontfaceobserver';
-import createHistory from 'history/lib/createBrowserHistory';
-
-// Observer loading of Open Sans (to remove open sans, remove the <link> tag in the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
-
-// When Open Sans is loaded, add the js-open-sans-loaded class to the body
-openSansObserver.check().then(() => {
-  document.body.classList.add('js-open-sans-loaded');
-}, () => {
-  document.body.classList.remove('js-open-sans-loaded');
-});
 
 // Import the pages
+import AppLoader from './components/AppLoader';
+import MainApp from './components/App.react';
 import HomePage from './components/pages/HomePage.react';
+import LoginPage from './components/pages/LoginPage.react';
 import ReadmePage from './components/pages/ReadmePage.react';
-import NotFoundPage from './components/pages/NotFound.react';
-import App from './components/App.react';
+
+
+import app from './components/app';
+import page1 from './components/page1';
+import page2 from './components/page2';
+import tab1 from './components/tab1';
+import tab2 from './components/tab2';
 
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './constants/AppConstants';
+
 
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
 
-// Create the store with the redux-thunk middleware, which allows us
-// to do asynchronous things in the actions
 import rootReducer from './reducers/rootReducer';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
-const socket = io('http://localhost:5002',{"force new connection":true});
-socket.on('chat message', function(msg){
-  console.log(msg);
-  store.dispatch({ type: CHANGE_PROJECT_NAME, name: msg });
-});
 
-socket.on('connect', function() {
-  console.log('socket connected...');
-});
-
-// Make reducers hot reloadable, see http://stackoverflow.com/questions/34243684/make-redux-reducers-and-other-non-components-hot-loadable
-if (module.hot) {
-  module.hot.accept('./reducers/rootReducer', () => {
-    const nextRootReducer = require('./reducers/rootReducer').default;
-    store.replaceReducer(nextRootReducer);
-  });
+function authCheck(nextState, replace) {
+  console.log('authCheck...');
+  //replace({ nextPathname: nextState.location.pathname }, '/readme')
 }
 
 // Mostly boilerplate, except for the Routes. These are the pages you can go to,
 // which are all wrapped in the App component, which contains the navigation etc
-ReactDOM.render(
+render((
   <Provider store={store}>
-    <Router history={createHistory()}>
-      <Route component={App}>
-        <Route path="/" component={HomePage} />
-        <Route path="/readme" component={ReadmePage} />
-        <Route path="*" component={NotFoundPage} />
+    <Router history={createBrowserHistory()}>
+      <Route path="/" component={AppLoader} onEnter={authCheck}>
+        <IndexRoute component={page1}/>
+        <Route path="page1" component={page1}>
+          <Route path="tab1" component={tab1} />
+          <Route path="tab2" component={tab2} />
+        </Route>
+        <Route path="page2" component={page2}>
+          <Route path="tab1" component={tab1} />
+          <Route path="tab2" component={tab2} />
+        </Route>
       </Route>
+
     </Router>
-  </Provider>,
-  document.getElementById('app')
+  </Provider>
+  ), document.getElementById('app')
 );

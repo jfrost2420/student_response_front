@@ -45,6 +45,10 @@ class HomePage extends Component {
         </label>
         <Link className="btn" to="/readme">Setup</Link>
         <button type="button" className="btn btn-primary">Primary</button>
+
+        <div className="container">
+          { this.props.children }
+        </div>
       </div>
     );
   }
