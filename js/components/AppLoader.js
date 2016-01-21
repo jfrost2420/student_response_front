@@ -20,7 +20,7 @@ class AppLoader extends React.Component {
     let user = this.props.data.user;
 
     if (user) {
-      this.props.history.pushState(null, '/page2');
+      this.props.history.pushState(null, this.props.location.pathname);
     }
 
   }

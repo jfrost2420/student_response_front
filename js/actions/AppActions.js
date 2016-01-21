@@ -26,7 +26,7 @@
 // Disable the no-use-before-define eslint rule for this file
 // It makes more sense to have the asnyc actions before the non-async ones
 /* eslint-disable no-use-before-define */
-import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants/AppConstants';
+import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME, TOGGLE_USER } from '../constants/AppConstants';
 import fetchit from '../api/index';
 
 export function asyncChangeProjectName(name) {
@@ -98,4 +98,8 @@ export function changeProjectName(name) {
 
 export function changeOwnerName(name) {
   return { type: CHANGE_OWNER_NAME, name };
+}
+
+export function toggleUser(value) {
+  return { type: TOGGLE_USER, value};
 }

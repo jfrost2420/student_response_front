@@ -10,6 +10,8 @@ import { Link } from 'react-router';
 
 import auth from '../../api/auth';
 
+import { toggleUser  } from '../../actions/AppActions';
+
 class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -45,10 +47,12 @@ class LoginPage extends Component {
 
       const { location } = this.props
 
+      this.props.dispatch(toggleUser(true))
+      
       if (location.state && location.state.nextPathname) {
-        this.context.router.replace(location.state.nextPathname)
+        this.props.history.pushState({},location.state.nextPathname)
       } else {
-        this.context.router.replace('/')
+        this.props.history.pushState({},'/page2')
       }
     }
 
