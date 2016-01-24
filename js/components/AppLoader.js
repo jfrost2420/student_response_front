@@ -20,7 +20,12 @@ class AppLoader extends React.Component {
     let user = this.props.data.user;
 
     if (user) {
-      this.props.history.pushState(null, this.props.location.pathname);
+      if (this.props.location.pathname === '/') {
+        this.props.history.pushState(null, 'page2');
+      } else {
+        this.props.history.pushState(null, this.props.location.pathname);
+      }
+      
     }
 
   }
@@ -40,7 +45,7 @@ class AppLoader extends React.Component {
 
     return (
       <div>
-        {user ? <App/> : <div>no</div>}
+        <App/>
         {this.props.children}
       </div>
     )

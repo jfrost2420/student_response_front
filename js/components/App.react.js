@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Logo from '../../img/logo.png';
+import { asyncChangeProjectName, asyncChangeOwnerName } from '../actions/AppActions';
 
 class App extends Component {
   constructor(props, context) {
@@ -31,6 +32,12 @@ class App extends Component {
   componentWillUnmount() {
     //FooterStore.unlisten(this.onChange);
     console.log('componentWillUnmount...');
+  }
+
+  handleSignClick(event) {
+    event.preventDefault();
+    console.log(event);
+    this.props.dispatch(asyncChangeProjectName('tester'));
   }
 
   render() {
@@ -56,7 +63,7 @@ class App extends Component {
                 <div className="form-group">
                   <input type="password" placeholder="Password" className="form-control" />
                 </div>
-                <button type="submit" className="btn btn-success">Sign</button>
+                <button className="btn btn-success" onClick={(e) => this.handleSignClick(e)}>Sign</button>
               </form>
             </div>
           </div>
