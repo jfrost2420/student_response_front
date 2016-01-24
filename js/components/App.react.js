@@ -41,7 +41,13 @@ class App extends Component {
   }
 
   render() {
-    const { projectName, ownerName } = this.props.data;
+    const { projectName, ownerName, user } = this.props.data;
+    var loggedIn;
+    if (user) {
+      loggedIn = 'Yes';
+    } else {
+      loggedIn = 'No';
+    }
     return (
       <div>
         <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -53,7 +59,7 @@ class App extends Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#">{ projectName }</a>
+              <a className="navbar-brand" href="#">{ projectName }  ({ loggedIn })</a>
             </div>
             <div id="navbar" className="navbar-collapse collapse">
               <form className="navbar-form navbar-right">

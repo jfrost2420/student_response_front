@@ -69,7 +69,11 @@ export function asyncChangeProjectName(name) {
     });
 */
 
-    Test();
+    return Test().then(function(data) {
+      console.log('test');
+    }, function(err) {
+      console.log(err);
+    });
 
 
   };
