@@ -20,13 +20,8 @@ import thunk from 'redux-thunk';
 
 // Import the pages
 import AppLoader from './components/AppLoader';
-import MainApp from './components/App.react';
-import HomePage from './components/pages/HomePage.react';
 import LoginPage from './components/pages/LoginPage.react';
-import ReadmePage from './components/pages/ReadmePage.react';
 
-
-import app from './components/app';
 import page1 from './components/page1';
 import page2 from './components/page2';
 import tab1 from './components/tab1';

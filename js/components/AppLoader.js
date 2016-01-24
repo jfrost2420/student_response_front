@@ -8,15 +8,9 @@ import App from './App.react.js';
 class AppLoader extends React.Component {
   constructor(props) {
     super(props);
-    //this.state = FooterStore.getState();
-    //this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    //FooterStore.listen(this.onChange);
-    //FooterActions.getTopCharacters();
-    console.log('componentDidMount...');
-
     let user = this.props.data.user;
 
     if (user) {
@@ -30,18 +24,9 @@ class AppLoader extends React.Component {
 
   }
 
-  componentWillUnmount() {
-    //FooterStore.unlisten(this.onChange);
-    console.log('componentWillUnmount...');
-
-  }
-
   render() {
     const { pathname } = this.props.location
     const user = this.props.data.user;
-
-    // Only take the first-level part of the path as key, instead of the whole path.
-    const key = pathname.split('/')[1] || 'root'
 
     return (
       <div>

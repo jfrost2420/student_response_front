@@ -15,24 +15,12 @@ import { toggleUser  } from '../../actions/AppActions';
 class LoginPage extends Component {
   constructor(props) {
     super(props);
-    //this.state = FooterStore.getState();
-    //this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    //FooterStore.listen(this.onChange);
-    //FooterActions.getTopCharacters();
-    console.log('componentDidMount...');
-
     if(this.props.data.user) {
       this.props.history.pushState(null, '/page2');
     }
-
-  }
-
-  componentWillUnmount() {
-    //FooterStore.unlisten(this.onChange);
-    console.log('componentWillUnmount...');
   }
 
   handleSubmit(event) {

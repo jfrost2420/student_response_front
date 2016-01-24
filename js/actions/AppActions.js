@@ -31,51 +31,10 @@ import { fetchit, Test } from '../api/index';
 
 export function asyncChangeProjectName(name) {
   return (dispatch) => {
-    // You can do async stuff here!
-    // API fetching, Animations,...
-    // For more information as to how and why you would do this, check https://github.com/gaearon/redux-thunk
-    //return dispatch(changeProjectName(name));
-
-    /*
-    fetch('http://localhost:5002/api').then(function(response) {
-      response.json().then(function(json) {
-        console.log(json);
-      })
-    });
-*/
-
-  
-    /*
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            console.log('change name',name);
-            return dispatch(changeProjectName(JSON.parse(xhr.responseText).msg));
-            //alert(xhr.responseText);
-        }
-    }
-    xhr.open('GET', 'http://localhost:5002/api', true);
-    xhr.send(null);
-    */
-
-    //fetchit('http://localhost:5002/api','GET', function(json) {
-    //  console.log('the json....',json);
-    //});
-
-    /*
-    fetchit('http://localhost:5000/api','GET').then(function(data) {
-      console.log('the json....',data);
-      return dispatch(changeProjectName(data.msg));
-    });
-*/
-
-    return Test().then(function(data) {
-      console.log('test');
-    }, function(err) {
-      console.log(err);
-    });
-
-
+    return Test().then(
+      (results) => console.log(results),
+      (error) => console.log(error)
+    );
   };
 
   //another example

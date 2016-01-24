@@ -14,26 +14,8 @@ import { asyncChangeProjectName, asyncChangeOwnerName } from '../actions/AppActi
 class App extends Component {
   constructor(props, context) {
     super(props, context);
-    //this.state = FooterStore.getState();
-    //this.onChange = this.onChange.bind(this);
-
-    //this.props.history.pushState(null, '/readme');
   }
-
-  componentDidMount() {
-    //FooterStore.listen(this.onChange);
-    //FooterActions.getTopCharacters();
-    console.log('componentDidMount...');
-
-    //this.props.history.pushState(null, '/readme');
-
-  }
-
-  componentWillUnmount() {
-    //FooterStore.unlisten(this.onChange);
-    console.log('componentWillUnmount...');
-  }
-
+  
   handleSignClick(event) {
     event.preventDefault();
     console.log(event);
