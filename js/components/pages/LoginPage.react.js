@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import auth from '../../api/auth';
+import { login } from '../../api/index';
 
-import { toggleUser  } from '../../actions/AppActions';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -29,6 +29,7 @@ class LoginPage extends Component {
     const email = this.refs.email.value
     const pass = this.refs.pass.value
 
+    /*
     var func = function(loggedIn) {
       if (!loggedIn)
         return this.setState({ error: true })
@@ -45,6 +46,13 @@ class LoginPage extends Component {
     }
 
     auth.login(email, pass, func.bind(this))
+    */
+
+    login('tester', '123').then(function(results) {
+      console.log(results.body);
+    }, function(error) {
+      console.log(error);
+    });
   }
 
   render() {

@@ -45,6 +45,29 @@ export function Test(id) {
 
 	return promise;
 
+}
 
+export function login(username, password) {
+
+	var promise = new Promise((resolve, reject) => {
+		request
+			.post('http://localhost:5000/auth')
+			.send({ username: username, password: password })
+			.end(function(err,res) {
+				console.log(err);
+				console.log(res);
+
+				if (err) {
+					reject(err);
+				}
+
+				if (res) {
+					resolve(res.body);
+				}
+
+			});
+	});
+
+	return promise;
 
 }

@@ -27,7 +27,7 @@
 // It makes more sense to have the asnyc actions before the non-async ones
 /* eslint-disable no-use-before-define */
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME, TOGGLE_USER } from '../constants/AppConstants';
-import { fetchit, Test } from '../api/index';
+import { fetchit, Test, login } from '../api/index';
 
 export function asyncChangeProjectName(name) {
   return (dispatch) => {
@@ -48,6 +48,19 @@ export function asyncChangeProjectName(name) {
     );
   };
   */
+}
+
+export function loginUser(username, password) {
+  return (dispatch) => {
+    return login(username, password).then(
+      (results) => {
+        console.log(results);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
 }
 
 export function asyncChangeOwnerName(name) {

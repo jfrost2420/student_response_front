@@ -9,7 +9,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Logo from '../../img/logo.png';
-import { asyncChangeProjectName, asyncChangeOwnerName } from '../actions/AppActions';
+import { asyncChangeProjectName, asyncChangeOwnerName, loginUser } from '../actions/AppActions';
 
 class App extends Component {
   constructor(props, context) {
@@ -20,6 +20,7 @@ class App extends Component {
     event.preventDefault();
     console.log(event);
     this.props.dispatch(asyncChangeProjectName('tester'));
+    //this.props.dispatch(loginUser('john','123'));
   }
 
   render() {
